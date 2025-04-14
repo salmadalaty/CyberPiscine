@@ -29,15 +29,15 @@ def download(url, path):
 
                 with open(filename, 'wb') as f:
                     f.write(img_data)
-                print(f"[+] Saved image: {filename}")
+                print(f"Saved image: {filename}")
     except Exception as e:
         print(f"Error {url}: {e}")
 
 
 
-def rec(url, path, visited, limit, current_depth=0):
+def rec(url, path, visited, limit, level=0):
 
-    if url in visited or current_depth >= limit:
+    if url in visited or level >= limit:
         return
     visited.add(url)
 
@@ -53,8 +53,8 @@ def rec(url, path, visited, limit, current_depth=0):
             next_url = link['href']
             #if relative pass convert to absolute
             next_url = requests.compat.urljoin(url, next_url)
-            if current_depth + 1 < limit:
-                rec(next_url, path, visited, limit, current_depth + 1)
+            if level + 1 < limit:
+                rec(next_url, path, visited, limit, level + 1)
 
     except Exception as e:
         print(f" ERROR {e}")
@@ -83,11 +83,6 @@ def main():
     if not url.startswith('http'):
         print("Invalid URL")
         sys.exit(1)
-
-    # print(f"URL: {url}")
-    # print(f"Recursive mode: {recursive}")
-    # print(f"Limit: {limit}")
-    # print(f"Path: {path}")
 
     if recursive:
         visited = set() 
