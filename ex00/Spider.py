@@ -66,10 +66,10 @@ def main():
         sys.exit(1)
 
     parser = argparse.ArgumentParser(description='Web Spider')
-    parser.add_argument('-r', action='store_true', help='Recursive mode')
-    parser.add_argument('-l', type=int, default=5, help='Limit of pages to visit')
-    parser.add_argument('-p', type=str, default='./data/', help='Path to save images')
-    parser.add_argument('url', type=str, help='URL to start the spider')
+    parser.add_argument('-r', action='store_true')
+    parser.add_argument('-l', type=int, default=5)
+    parser.add_argument('-p', type=str, default='./data/')
+    parser.add_argument('url', type=str)
 
     args = parser.parse_args()
     url = args.url
