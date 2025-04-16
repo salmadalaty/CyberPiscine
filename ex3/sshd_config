@@ -1,0 +1,4 @@
+# sshd_config
+Port 4242
+PermitRootLogin no
+PasswordAuthentication yes
